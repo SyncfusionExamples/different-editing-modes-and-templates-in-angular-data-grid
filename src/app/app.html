@@ -1,0 +1,23 @@
+<div class="container">
+  <ejs-grid [dataSource]='data' [allowPaging]='true' [pageSettings]='pageSettings' [allowSorting]='true'
+    [allowMultiSorting]='true'
+    [editSettings]='editSettings' [toolbar]='toolbar' (actionBegin)='actionBegin($event)'>
+    <e-columns>
+      <e-column field='OrderID' headerText='Order ID' textAlign='right' width=90 isPrimaryKey='true'
+        editType="numericedit"></e-column>
+      <e-column field='EmployeeID' headerText='Employee ID' textAlign='right' width=70></e-column>
+      <e-column field='CustomerID' headerText='Customer ID' width=120 [validationRules]='customerIDRules'
+        editType="stringedit"></e-column>
+      <e-column field='Freight' headerText='Freight' textAlign='right' format='C2' width=90></e-column>
+      <e-column field='OrderDate' headerText='Order Date' textAlign='right' format='yMd' width=120
+        editType="datepickeredit"></e-column>
+      <e-column field='ShipCountry' headerText='Ship Country' width=120></e-column>
+      <e-column field='CustomerNumber' headerText='Customer Number' width="140" textAlign='right'>
+        <ng-template #editTemplate let-data>
+          <ejs-maskedtextbox id="masktextbox" #mask name="CustomerNumber" mask='000-000-0000'
+            [(value)]="orderData.CustomerNumber"></ejs-maskedtextbox>
+        </ng-template>
+      </e-column>
+    </e-columns>
+  </ejs-grid>
+</div>
